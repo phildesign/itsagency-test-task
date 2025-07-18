@@ -232,6 +232,15 @@ input[type=submit] {
   padding-bottom: 72px;
 }
 
+.filter__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
 .toggle {
   position: relative;
   display: inline-block;
@@ -285,6 +294,19 @@ input:active + .toggle__slider:before {
 .products__top {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 44px;
+}
+
+.products__top-count {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.products__top-sort {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
 }
 
 .products__box {
