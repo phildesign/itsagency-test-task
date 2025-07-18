@@ -368,6 +368,11 @@ input:active + .toggle__slider:before {
 	border: none;
 	background: $accent-color;
 	border-radius: 8px;
+	transition: all 0.5s;
+
+	&:hover {
+		background: lighten($accent-color, 10);
+	}
 }
 //end products
 
