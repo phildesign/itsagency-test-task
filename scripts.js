@@ -12,7 +12,7 @@ const swiper = new Swiper('.swiper', {
 function createProductCard(product) {
 	return `
 		<div class="products__item">
-			<img src="./paint.jpg" alt="img" class="products__item-img">
+			<div class="products__item-img-wrapper"><img src="./paint.jpg" alt="img" class="products__item-img"></div>
 			<h2 class="products__item-title">${product.title}</h2>
 			<div class="products__item-bottom">
 				<div class="products__item-price">${product.price} ₽</div>
@@ -36,8 +36,10 @@ async function fetchAndRenderProducts() {
 
 		const products = await response.json();
 		const productsBox = document.querySelector('.products__box');
+		const productsCount = document.querySelector('.products__top-count span');
 
 		productsBox.innerHTML = products.map(createProductCard).join('');
+		productsCount.innerHTML = products.length;
 	} catch (error) {
 		console.error('Ошибка:', error);
 		document.querySelector('.products__box').innerHTML = `
