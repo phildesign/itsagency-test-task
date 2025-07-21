@@ -12,7 +12,7 @@ const swiper = new Swiper('.swiper', {
 function createProductCard(product) {
 	return `
 		<div class="products__item">
-			<div class="products__item-img-wrapper"><img src=${product.image} alt="img" class="products__item-img"></div>
+			<div class="products__item-img-wrapper"><img src="${product.image}" alt="${product.title}" class="products__item-img"></div>
 			<h2 class="products__item-title">${product.title}</h2>
 			<div class="products__item-bottom">
 				<div class="products__item-price">${product.price} ₽</div>
@@ -38,8 +38,21 @@ async function fetchAndRenderProducts() {
 		const productsBox = document.querySelector('.products__box');
 		const productsCount = document.querySelector('.products__top-count span');
 
-		productsBox.innerHTML = products.map(createProductCard).join('');
-		productsCount.innerHTML = products.length;
+		const productAvailable = document.querySelector('.filter__item_available input').checked;
+		const productContractual = document.querySelector('.filter__item_contractual input').checked;
+		const productSale = document.querySelector('.filter__item_sale input').checked;
+
+		productsBox.innerHTML = products
+			.filter(
+				(product) =>
+					product.available === productAvailable &&
+					product.contractual === productContractual &&
+					product.sale === productSale,
+			)
+			.map(createProductCard)
+			.join('');
+
+		productsCount.innerHTML = productsBox.querySelectorAll('.products__item').length;
 	} catch (error) {
 		console.error('Ошибка:', error);
 		document.querySelector('.products__box').innerHTML = `
@@ -47,5 +60,11 @@ async function fetchAndRenderProducts() {
     `;
 	}
 }
+
+const productAvailable = document
+	.querySelector('.filter__item_available input')
+	.addEventListener('click', () => {
+		fetchAndRenderProducts();
+	});
 
 document.addEventListener('DOMContentLoaded', fetchAndRenderProducts);

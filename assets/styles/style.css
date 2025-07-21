@@ -304,6 +304,9 @@ input:active + .toggle__slider:before {
 }
 
 .products__top-sort {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
@@ -361,7 +364,7 @@ input:active + .toggle__slider:before {
   transition: all 0.5s;
 }
 .products__item-btn:hover {
-  background: #9ccab3;
+  background: rgb(156.1625615764, 201.8374384236, 178.6256157635);
 }
 
 .footer {

@@ -125,35 +125,35 @@
 
     <div class="content container">
       <aside class="filter">
-        <div class="filter__item">
+        <div class="filter__item filter__item_news">
           <label class="toggle">
             <input type="checkbox">
             <span class="toggle__slider"></span>
           </label>
           Новинки
         </div>
-        <div class="filter__item">
+        <div class="filter__item filter__item_available">
           <label class="toggle">
-            <input type="checkbox">
+            <input type="checkbox" checked>
             <span class="toggle__slider"></span>
           </label>
           Есть в наличии
         </div>
-        <div class="filter__item">
+        <div class="filter__item filter__item_contractual">
           <label class="toggle">
             <input type="checkbox">
             <span class="toggle__slider"></span>
           </label>
           Контрактные
         </div>
-        <div class="filter__item">
+        <div class="filter__item filter__item_exclusive">
           <label class="toggle">
             <input type="checkbox">
             <span class="toggle__slider"></span>
           </label>
           Эксклюзивные
         </div>
-        <div class="filter__item">
+        <div class="filter__item filter__item_sale">
           <label class="toggle">
             <input type="checkbox">
             <span class="toggle__slider"></span>
@@ -165,7 +165,12 @@
       <div class="products">
         <div class="products__top">
           <div class="products__top-count"><span></span> товаров</div>
-          <div class="products__top-sort">Сначала дорогие</div>
+          <div class="products__top-sort">Сначала дорогие
+            <svg class="products__top-sort-icon" xmlns="http://www.w3.org/2000/svg" width="8" height="5"
+              viewBox="0 0 8 5" fill="none">
+              <path d="M4 4.5L7.4641 0L0.535898 0L4 4.5Z" fill="#202020" />
+            </svg>
+          </div>
         </div>
 
         <div class="products__box"></div>
