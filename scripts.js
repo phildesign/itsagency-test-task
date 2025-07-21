@@ -29,30 +29,13 @@ function createProductCard(product) {
   `;
 }
 
-async function fetchAndRenderProducts() {
+async function fetchProducts() {
 	try {
 		const response = await fetch('https://687a20daabb83744b7eb8e3f.mockapi.io/products');
 		if (!response.ok) throw new Error('Ошибка загрузки данных');
 
 		const products = await response.json();
-		const productsBox = document.querySelector('.products__box');
-		const productsCount = document.querySelector('.products__top-count span');
-
-		const productAvailable = document.querySelector('.filter__item_available input').checked;
-		const productContractual = document.querySelector('.filter__item_contractual input').checked;
-		const productSale = document.querySelector('.filter__item_sale input').checked;
-
-		productsBox.innerHTML = products
-			.filter(
-				(product) =>
-					product.available === productAvailable &&
-					product.contractual === productContractual &&
-					product.sale === productSale,
-			)
-			.map(createProductCard)
-			.join('');
-
-		productsCount.innerHTML = productsBox.querySelectorAll('.products__item').length;
+		return products;
 	} catch (error) {
 		console.error('Ошибка:', error);
 		document.querySelector('.products__box').innerHTML = `
@@ -61,10 +44,39 @@ async function fetchAndRenderProducts() {
 	}
 }
 
-const productAvailable = document
-	.querySelector('.filter__item_available input')
-	.addEventListener('click', () => {
-		fetchAndRenderProducts();
-	});
+async function renderProducts() {
+	const products = await fetchProducts();
 
-document.addEventListener('DOMContentLoaded', fetchAndRenderProducts);
+	const productsBox = document.querySelector('.products__box');
+	const productsCount = document.querySelector('.products__top-count span');
+
+	const productNew = document.querySelector('.filter__item_new input').checked;
+	const productAvailable = document.querySelector('.filter__item_available input').checked;
+	const productContractual = document.querySelector('.filter__item_contractual input').checked;
+	const productExclusive = document.querySelector('.filter__item_exclusive input').checked;
+	const productSale = document.querySelector('.filter__item_sale input').checked;
+
+	productsBox.innerHTML = products
+		.filter(
+			(product) =>
+				product.new === productNew &&
+				product.available === productAvailable &&
+				product.contractual === productContractual &&
+				product.exclusive === productExclusive &&
+				product.sale === productSale,
+		)
+		.map(createProductCard)
+		.join('');
+
+	productsCount.innerHTML = productsBox.querySelectorAll('.products__item').length;
+}
+
+const productsFilterBtns = document.querySelectorAll('.filter__item input');
+
+productsFilterBtns.forEach((item) => {
+	item.addEventListener('click', () => {
+		renderProducts();
+	});
+});
+
+document.addEventListener('DOMContentLoaded', renderProducts);
