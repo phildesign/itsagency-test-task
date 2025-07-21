@@ -80,3 +80,15 @@ productsFilterBtns.forEach((item) => {
 });
 
 document.addEventListener('DOMContentLoaded', renderProducts);
+
+const cartBtn = document.querySelector('.header__control-cart');
+const cartPopup = document.querySelector('.cart');
+const cartPopupCloseBtn = document.querySelector('.cart__btn-close');
+
+cartBtn.addEventListener('click', () => {
+	cartPopup.classList.add('active');
+});
+
+cartPopupCloseBtn.addEventListener('click', () => {
+	cartPopup.classList.remove('active');
+});
