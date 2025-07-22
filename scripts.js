@@ -158,3 +158,17 @@ function renderCartProducts() {
 	`;
 	});
 }
+
+const overlay = document.querySelector('.overlay');
+const productsTopSortCurrent = document.querySelector('.products__top-sort-current');
+const productTopSortPopup = document.querySelector('.products__top-sort-popup');
+
+productsTopSortCurrent.addEventListener('click', function () {
+	productTopSortPopup.classList.toggle('active');
+});
+
+productTopSortPopup.querySelectorAll('.products__top-sort-option').forEach((item) => {
+	item.addEventListener('click', () => {
+		productTopSortPopup.classList.toggle('active');
+	});
+});

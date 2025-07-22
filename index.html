@@ -165,11 +165,20 @@
       <div class="products">
         <div class="products__top">
           <div class="products__top-count"><span></span> товаров</div>
-          <div class="products__top-sort">Сначала дорогие
-            <svg class="products__top-sort-icon" xmlns="http://www.w3.org/2000/svg" width="8" height="5"
-              viewBox="0 0 8 5" fill="none">
-              <path d="M4 4.5L7.4641 0L0.535898 0L4 4.5Z" fill="#202020" />
-            </svg>
+          <div class="products__top-sort">
+            <div class="products__top-sort-current">Сначала дорогие
+              <svg class="products__top-sort-icon" xmlns="http://www.w3.org/2000/svg" width="8" height="5"
+                viewBox="0 0 8 5" fill="none">
+                <path d="M4 4.5L7.4641 0L0.535898 0L4 4.5Z" fill="#202020" />
+              </svg>
+            </div>
+
+            <div class="products__top-sort-popup">
+              <div class="products__top-sort-option active" data-sort="price-desc">Сначала дорогие</div>
+              <div class="products__top-sort-option" data-sort="price-asc">Сначала дешевые</div>
+              <div class="products__top-sort-option" data-sort="popular">По популярности</div>
+              <div class="products__top-sort-option" data-sort="new">Сначала новые</div>
+            </div>
           </div>
         </div>
 
@@ -213,6 +222,7 @@
   </div>
 
 
+  <div class="overlay"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="scripts.js"></script>
