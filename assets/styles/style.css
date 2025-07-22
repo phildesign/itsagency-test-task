@@ -447,6 +447,11 @@ input:active + .toggle__slider:before {
   color: #1f2020;
 }
 
+.cart__main-box {
+  overflow-y: auto;
+  height: 250px;
+}
+
 .cart__main-box-row {
   display: grid;
   grid-template-columns: repeat(4, auto);

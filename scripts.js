@@ -15,7 +15,7 @@ function createProductCard(product) {
 			<div class="products__item-img-wrapper"><img src="${product.image}" alt="${product.title}" class="products__item-img"></div>
 			<h2 class="products__item-title">${product.title}</h2>
 			<div class="products__item-bottom">
-				<div class="products__item-price">${product.price} ₽</div>
+				<div class="products__item-price"><span>${product.price}</span> ₽</div>
 				<button class="products__item-btn" data-id="${product.id}">
 					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
 						<path d="M10 4.16663V15.8333" stroke="#1F2020" stroke-width="2" stroke-linecap="round"
@@ -67,6 +67,8 @@ async function renderProducts() {
 
 	productsBox.innerHTML = filteredProducts.map(createProductCard).join('');
 	productsCount.textContent = filteredProducts.length;
+
+	initCartHandlers();
 }
 
 const productsFilterBtns = document.querySelectorAll('.filter__item input');
@@ -95,18 +97,19 @@ cartPopupCloseBtn.addEventListener('click', () => {
 
 const cartStore = [];
 
-console.log(cartStore, 'cartStore');
+function initCartHandlers() {
+	const products = document.querySelectorAll('.products__item');
 
-const products = document.querySelectorAll('.products__item-btn');
+	products.forEach((item) => {
+		item.querySelector('.products__item-btn').addEventListener('click', () => {
+			console.log(item, 'item');
+			console.log(cartStore, 'cartStore');
 
-products.forEach((item) => {
-	item.addEventListener('click', () => {
-		console.log(item, 'item');
-
-		cartStore.push(item);
-		renderCartProducts();
+			cartStore.push(item);
+			renderCartProducts();
+		});
 	});
-});
+}
 
 function renderCartProducts() {
 	const cartProductsBox = document.querySelector('.cart__main-box');

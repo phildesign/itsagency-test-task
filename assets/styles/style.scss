@@ -480,6 +480,8 @@ input:active + .toggle__slider:before {
 }
 
 .cart__main-box {
+	overflow-y: auto;
+	height: 250px;
 }
 
 .cart__main-box-row {
