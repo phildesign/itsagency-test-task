@@ -17,7 +17,7 @@ function createProductCard(product) {
 			<div class="products__item-bottom">
 				<div class="products__item-price"><span>${product.price}</span> ₽</div>
 				<button class="products__item-btn" data-id="${product.id}">
-					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+					<svg class="products__item-btn-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
 						<path d="M10 4.16663V15.8333" stroke="#1F2020" stroke-width="2" stroke-linecap="round"
 							stroke-linejoin="round" />
 						<path d="M4.16699 10H15.8337" stroke="#1F2020" stroke-width="2" stroke-linecap="round"
@@ -166,14 +166,18 @@ const productsTopSortCurrent = document.querySelector('.products__top-sort-curre
 const productTopSortPopup = document.querySelector('.products__top-sort-popup');
 const navMobileBtn = document.querySelector('.header__nav-mobile-btn');
 const navMobile = document.querySelector('.header__nav');
+const filtersMobileBtn = document.querySelector('.products__top-filters-btn');
+const filter = document.querySelector('.filter');
 
 productsTopSortCurrent.addEventListener('click', function () {
 	productTopSortPopup.classList.toggle('active');
+	overlay.classList.toggle('active');
 });
 
 productTopSortPopup.querySelectorAll('.products__top-sort-option').forEach((item) => {
 	item.addEventListener('click', () => {
 		productTopSortPopup.classList.toggle('active');
+		overlay.classList.remove('active');
 	});
 });
 
@@ -186,7 +190,15 @@ overlay.addEventListener('click', function () {
 	navMobile.classList.remove('active');
 	overlay.classList.remove('active');
 
+	productTopSortPopup.classList.remove('active');
+
 	cartPopup.classList.remove('active');
 	document.body.style.overflow = '';
-	console.log(123);
+
+	filter.classList.remove('active');
+});
+
+filtersMobileBtn.addEventListener('click', function () {
+	filter.classList.toggle('active');
+	overlay.classList.toggle('active');
 });
