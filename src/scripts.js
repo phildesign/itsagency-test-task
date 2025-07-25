@@ -46,24 +46,20 @@ async function fetchProducts() {
 
 async function renderProducts() {
 	const products = await fetchProducts();
-
 	const productsBox = document.querySelector('.products__box');
 	const productsCount = document.querySelector('.products__top-count span');
 
-	const productNew = document.querySelector('.filter__item_new input').checked;
-	const productAvailable = document.querySelector('.filter__item_available input').checked;
-	const productContractual = document.querySelector('.filter__item_contractual input').checked;
-	const productExclusive = document.querySelector('.filter__item_exclusive input').checked;
-	const productSale = document.querySelector('.filter__item_sale input').checked;
+	const filters = {
+		new: document.querySelector('.filter__item_new input').checked,
+		available: document.querySelector('.filter__item_available input').checked,
+		contractual: document.querySelector('.filter__item_contractual input').checked,
+		exclusive: document.querySelector('.filter__item_exclusive input').checked,
+		sale: document.querySelector('.filter__item_sale input').checked,
+	};
 
-	const filteredProducts = products.filter(
-		(product) =>
-			product.new === productNew &&
-			product.available === productAvailable &&
-			product.contractual === productContractual &&
-			product.exclusive === productExclusive &&
-			product.sale === productSale,
-	);
+	const filteredProducts = products.filter((product) => {
+		return Object.entries(filters).every(([key, isActive]) => !isActive || product[key]);
+	});
 
 	productsBox.innerHTML = filteredProducts.map(createProductCard).join('');
 	productsCount.textContent = filteredProducts.length;
