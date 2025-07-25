@@ -1,0 +1,77 @@
+@use '../../styles/variables' as *;
+
+.main-slider {
+	width: 100%;
+
+	@media (max-width: 1200px) {
+		display: none;
+	}
+}
+
+.main-slider__slide {
+	position: relative;
+}
+
+.main-slider__slide-info {
+	max-width: 472px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.main-slider__slide-title {
+	font-size: 72px;
+	font-weight: 400;
+	color: $white-color;
+}
+
+.main-slider__slide-text {
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 1.3;
+	color: $white-color;
+}
+
+.main-slider__slide-img {
+}
+
+.main-slider__controls {
+	display: flex;
+	color: #fff;
+	padding: 0 64px;
+}
+
+.main-slider__btn-prev {
+	color: #fff;
+	left: 84px;
+}
+
+.main-slider__btn-next {
+	color: #fff;
+	right: 84px;
+}
+
+.main-slider__pagination {
+	width: 124px !important;
+	height: 32px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	left: 50% !important;
+	bottom: 39px !important;
+	transform: translateX(-50%);
+	border-radius: 20px;
+	background: rgba(0, 0, 0, 0.4);
+}
+
+.main-slider__pagination .swiper-pagination-bullet {
+	width: 6px;
+	height: 6px;
+	background: #555d5a;
+}
+
+.main-slider__pagination .swiper-pagination-bullet-active {
+	background: $white-color;
+}

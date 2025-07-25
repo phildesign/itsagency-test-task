@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+$font-main: 'Inter';
+$accent-color: #7bb899;
+$dark-color: #1f2020;
+$white-color: #ffffff;
+$text-color: $dark-color;
+
+*,
+*::before,
+*::after {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	min-width: 320px;
+	height: 100%;
+	position: relative;
+	font-size: 16px;
+	line-height: 1.6;
+	font-family: $font-main, sans-serif;
+	overflow-x: hidden;
+	color: $text-color;
+}
+
+a,
+a:link,
+a:visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+aside,
+nav,
+footer,
+header,
+section,
+main {
+	display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	font-size: inherit;
+	font-weight: inherit;
+}
+
+ul,
+ul li {
+	list-style: none;
+}
+
+img {
+	vertical-align: top;
+}
+
+img,
+svg {
+	max-width: 100%;
+	height: auto;
+}
+
+input,
+textarea,
+button,
+select {
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit;
+	background-color: transparent;
+}
+
+button,
+input[type='submit'] {
+	display: inline-block;
+	box-shadow: none;
+	background-color: transparent;
+	background: none;
+	cursor: pointer;
+}
+
+.wrapper {
+	max-width: 1920px;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+.container {
+	padding: 0 64px;
+}
+
+.title {
+	display: none;
+
+	@media (max-width: 1200px) {
+		display: block;
+		font-size: 36px;
+		font-weight: 400;
+		padding-left: 64px;
+		margin-bottom: 48px;
+	}
+
+	@media (max-width: 800px) {
+		padding-left: 24px;
+	}
+}
+
+.content {
+	display: grid;
+	grid-template-columns: 165px auto;
+	gap: 138px;
+	padding-top: 72px;
+	padding-bottom: 72px;
+
+	@media (max-width: 800px) {
+		grid-template-columns: 1fr;
+		padding: 24px;
+	}
+
+	@media (max-width: 500px) {
+		padding-top: 0;
+	}
+}

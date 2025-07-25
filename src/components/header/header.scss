@@ -1,0 +1,172 @@
+@use '../../styles/variables' as *;
+
+.header__inner {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	padding-top: 38px;
+	padding-bottom: 40px;
+
+	@media (max-width: 800px) {
+		padding: 24px;
+	}
+}
+
+.header__nav-mobile-btn {
+	display: none;
+	width: 24px;
+	height: 24px;
+	position: relative;
+	z-index: 2;
+	overflow: hidden;
+	border: none;
+	margin-right: 64px;
+
+	@media (max-width: 1400px) {
+		display: block;
+	}
+
+	span {
+		width: 24px;
+		height: 2px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background-color: $dark-color;
+		transition: all 0.5s;
+
+		&:nth-of-type(2) {
+			top: calc(50% - 6px);
+		}
+
+		&:nth-of-type(3) {
+			top: calc(50% + 6px);
+		}
+	}
+
+	@media (max-width: 500px) {
+		margin: 0;
+	}
+}
+
+.header__logo {
+	margin-right: 172px;
+
+	@media (max-width: 1460px) {
+		margin-right: 50px;
+	}
+
+	@media (max-width: 500px) {
+		height: 19px;
+		margin: 0 auto;
+	}
+}
+
+.header__nav {
+	display: flex;
+	gap: 24px;
+
+	&.active {
+		visibility: visible;
+		opacity: 1;
+	}
+
+	@media (max-width: 1400px) {
+		height: 100%;
+		flex-direction: column;
+		background: #fff;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 100;
+		visibility: hidden;
+		opacity: 0;
+		transition: all 0.5s;
+		padding: 40px 65px;
+	}
+
+	@media (max-width: 800px) {
+		padding: 24px;
+	}
+}
+
+.header__nav-link {
+	font-size: 14px;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+
+.header__contacts {
+	display: flex;
+	flex-direction: column;
+	margin-left: auto;
+	margin-right: 116px;
+
+	@media (max-width: 1300px) {
+		margin-right: 50px;
+	}
+
+	@media (max-width: 760px) {
+		display: none;
+	}
+}
+
+.header__contacts-phone {
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.header__contacts-text {
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1;
+	opacity: 0.3;
+}
+
+.header__control {
+	display: flex;
+	gap: 24px;
+
+	& button {
+		border: none;
+	}
+
+	@media (max-width: 760px) {
+		margin-left: auto;
+	}
+
+	@media (max-width: 500px) {
+		margin: 0;
+	}
+}
+
+.header__control-search {
+	@media (max-width: 500px) {
+		display: none;
+	}
+}
+
+.header__control-account {
+	@media (max-width: 500px) {
+		display: none;
+	}
+}
+
+.header__control-favorites {
+	@media (max-width: 500px) {
+		display: none;
+	}
+}
+
+.header__control-cart {
+	width: 24px;
+	height: 24px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: $accent-color;
+	border-radius: 100%;
+	font-size: 12px;
+	font-weight: 500;
+}
