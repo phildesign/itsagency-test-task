@@ -94,19 +94,85 @@ input[type=submit] {
 }
 
 .header__inner {
+  width: 100%;
   display: flex;
   align-items: center;
   padding-top: 38px;
   padding-bottom: 40px;
 }
+@media (max-width: 800px) {
+  .header__inner {
+    padding: 24px;
+  }
+}
+
+.header__nav-mobile-btn {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  border: none;
+  margin-right: 64px;
+}
+@media (max-width: 1400px) {
+  .header__nav-mobile-btn {
+    display: block;
+  }
+}
+.header__nav-mobile-btn span {
+  width: 24px;
+  height: 2px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #1f2020;
+  transition: all 0.5s;
+}
+.header__nav-mobile-btn span:nth-of-type(2) {
+  top: calc(50% - 6px);
+}
+.header__nav-mobile-btn span:nth-of-type(3) {
+  top: calc(50% + 6px);
+}
 
 .header__logo {
   margin-right: 172px;
+}
+@media (max-width: 1460px) {
+  .header__logo {
+    margin-right: 50px;
+  }
 }
 
 .header__nav {
   display: flex;
   gap: 24px;
+}
+.header__nav.active {
+  visibility: visible;
+  opacity: 1;
+}
+@media (max-width: 1400px) {
+  .header__nav {
+    height: 100%;
+    flex-direction: column;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.5s;
+    padding: 40px 65px;
+  }
+}
+@media (max-width: 800px) {
+  .header__nav {
+    padding: 24px;
+  }
 }
 
 .header__nav-link {
@@ -120,6 +186,16 @@ input[type=submit] {
   flex-direction: column;
   margin-left: auto;
   margin-right: 116px;
+}
+@media (max-width: 1300px) {
+  .header__contacts {
+    margin-right: 50px;
+  }
+}
+@media (max-width: 760px) {
+  .header__contacts {
+    display: none;
+  }
 }
 
 .header__contacts-phone {
@@ -141,6 +217,11 @@ input[type=submit] {
 .header__control button {
   border: none;
 }
+@media (max-width: 760px) {
+  .header__control {
+    margin-left: auto;
+  }
+}
 
 .header__control-cart {
   width: 24px;
@@ -155,8 +236,12 @@ input[type=submit] {
 }
 
 .main-slider {
-  width: 100% px;
-  height: 560px;
+  width: 100%;
+}
+@media (max-width: 1200px) {
+  .main-slider {
+    display: none;
+  }
 }
 
 .main-slider__slide {
@@ -231,6 +316,28 @@ input[type=submit] {
   padding-top: 72px;
   padding-bottom: 72px;
 }
+@media (max-width: 800px) {
+  .content {
+    grid-template-columns: 1fr;
+    padding: 24px;
+  }
+}
+
+@media (max-width: 800px) {
+  .filter {
+    width: 100%;
+    height: 318px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background: #fff;
+    border-radius: 24px 24px 0 0;
+    z-index: 10;
+    visibility: hidden;
+    opacity: 0;
+    padding: 24px;
+  }
+}
 
 .filter__item {
   display: flex;
@@ -297,6 +404,10 @@ input:active + .toggle__slider:before {
   margin-bottom: 44px;
 }
 
+.products__top-filters-btn {
+  display: none;
+}
+
 .products__top-count {
   font-size: 12px;
   font-weight: 500;
@@ -317,7 +428,7 @@ input:active + .toggle__slider:before {
 
 .products__top-sort-current {
   cursor: pointer;
-  padding: 0 24px;
+  padding: 0 0 0 24px;
   margin-left: auto;
 }
 
@@ -351,7 +462,7 @@ input:active + .toggle__slider:before {
 
 .products__box {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
   gap: 18px;
 }
 
@@ -410,28 +521,30 @@ input:active + .toggle__slider:before {
 }
 
 .cart {
+  max-width: 600px;
   width: 100%;
   height: 100%;
   position: fixed;
   top: 0;
-  left: 0;
-  z-index: 10;
-  background: rgba(0, 0, 0, 0.5);
-  display: none;
+  right: 0;
+  z-index: 100;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.5s;
+  margin-left: auto;
 }
 .cart.active {
-  display: block;
+  visibility: visible;
+  opacity: 1;
 }
 
 .cart__inner {
-  max-width: 600px;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   background: #ffffff;
   padding: 40px;
-  margin-left: auto;
 }
 
 .cart__top {
@@ -602,7 +715,12 @@ input:active + .toggle__slider:before {
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 100;
+  z-index: 10;
   visibility: hidden;
+  opacity: 0;
   transition: all 0.5s;
+}
+.overlay.active {
+  visibility: visible;
+  opacity: 1;
 }/*# sourceMappingURL=style.css.map */

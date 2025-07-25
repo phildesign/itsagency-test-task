@@ -86,13 +86,15 @@ const cartPopup = document.querySelector('.cart');
 const cartPopupCloseBtn = document.querySelector('.cart__btn-close');
 
 cartBtn.addEventListener('click', () => {
-	cartPopup.classList.add('active');
+	cartPopup.classList.toggle('active');
 	document.body.style.overflow = 'hidden';
+	overlay.classList.toggle('active');
 });
 
 cartPopupCloseBtn.addEventListener('click', () => {
-	cartPopup.classList.remove('active');
+	cartPopup.classList.toggle('active');
 	document.body.style.overflow = '';
+	overlay.classList.toggle('active');
 });
 
 const cartStore = [];
@@ -162,6 +164,8 @@ function renderCartProducts() {
 const overlay = document.querySelector('.overlay');
 const productsTopSortCurrent = document.querySelector('.products__top-sort-current');
 const productTopSortPopup = document.querySelector('.products__top-sort-popup');
+const navMobileBtn = document.querySelector('.header__nav-mobile-btn');
+const navMobile = document.querySelector('.header__nav');
 
 productsTopSortCurrent.addEventListener('click', function () {
 	productTopSortPopup.classList.toggle('active');
@@ -171,4 +175,18 @@ productTopSortPopup.querySelectorAll('.products__top-sort-option').forEach((item
 	item.addEventListener('click', () => {
 		productTopSortPopup.classList.toggle('active');
 	});
+});
+
+navMobileBtn.addEventListener('click', function () {
+	navMobile.classList.toggle('active');
+	overlay.classList.toggle('active');
+});
+
+overlay.addEventListener('click', function () {
+	navMobile.classList.remove('active');
+	overlay.classList.remove('active');
+
+	cartPopup.classList.remove('active');
+	document.body.style.overflow = '';
+	console.log(123);
 });
