@@ -31,6 +31,10 @@ export default defineConfig({
 		outDir: 'dist',
 		emptyOutDir: true,
 		rollupOptions: {
+			input: {
+				main: resolve(__dirname, 'index.html'),
+				scripts: resolve(__dirname, 'src/scripts.js'),
+			},
 			output: {
 				assetFileNames: 'assets/[name][extname]',
 				chunkFileNames: 'assets/[name].js',
