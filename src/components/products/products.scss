@@ -101,6 +101,11 @@
 	flex-direction: column;
 	border-bottom: 1px solid #e6e6e6;
 	padding-bottom: 14px;
+
+	&:hover .products__item-btn {
+		visibility: visible;
+		opacity: 1;
+	}
 }
 
 .products__item-img-wrapper {
@@ -156,6 +161,8 @@
 	background: $accent-color;
 	border-radius: 8px;
 	transition: all 0.5s;
+	visibility: hidden;
+	opacity: 0;
 
 	&:hover {
 		background: color.scale($accent-color, $lightness: 10%);
