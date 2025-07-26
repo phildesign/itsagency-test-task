@@ -57,15 +57,71 @@ async function renderProducts() {
 		sale: document.querySelector('.filter__item_sale input').checked,
 	};
 
-	const filteredProducts = products.filter((product) => {
+	let filteredProducts = products.filter((product) => {
 		return Object.entries(filters).every(([key, isActive]) => !isActive || product[key]);
 	});
+
+	const activeSortOption = document.querySelector('.products__top-sort-option.active');
+	const sortType = activeSortOption ? activeSortOption.dataset.sort : 'price-desc';
+
+	// Обновляем текст текущей сортировки
+	updateCurrentSortText(activeSortOption);
+
+	filteredProducts = sortProducts(filteredProducts, sortType);
 
 	productsBox.innerHTML = filteredProducts.map(createProductCard).join('');
 	productsCount.textContent = filteredProducts.length;
 
 	initCartHandlers();
 }
+
+function sortProducts(products, sortType) {
+	switch (sortType) {
+		case 'price-asc':
+			return [...products].sort((a, b) => a.price - b.price);
+		case 'price-desc':
+			return [...products].sort((a, b) => b.price - a.price);
+		case 'popular':
+			return [...products].sort((a, b) => b.popularity - a.popularity);
+		case 'new':
+			return [...products].sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
+		default:
+			return products;
+	}
+}
+
+function updateCurrentSortText(activeOption) {
+	const currentSortElement = document.querySelector('.products__top-sort-current span');
+	if (activeOption && currentSortElement) {
+		currentSortElement.innerHTML = activeOption.textContent;
+	}
+}
+
+document.querySelectorAll('.products__top-sort-option').forEach((option) => {
+	option.addEventListener('click', function () {
+		document.querySelectorAll('.products__top-sort-option').forEach((el) => {
+			el.classList.remove('active');
+		});
+		this.classList.add('active');
+
+		updateCurrentSortText(this);
+
+		renderProducts();
+	});
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+	if (!document.querySelector('.products__top-sort-option.active')) {
+		const defaultSort = document.querySelector(
+			'.products__top-sort-option[data-sort="price-desc"]',
+		);
+		if (defaultSort) {
+			defaultSort.classList.add('active');
+			updateCurrentSortText(defaultSort);
+		}
+	}
+	renderProducts();
+});
 
 const productsFilterBtns = document.querySelectorAll('.filter__item input');
 
