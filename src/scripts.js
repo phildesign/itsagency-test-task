@@ -11,21 +11,21 @@ const swiper = new Swiper('.swiper', {
 
 function createProductCard(product) {
 	return `
-		<div class="products__item" data-id="${product.id}">
-			<div class="products__item-img-wrapper"><img src="${product.image}" alt="${product.title}" class="products__item-img"></div>
-			<h2 class="products__item-title">${product.title}</h2>
-			<div class="products__item-bottom">
-				<div class="products__item-price"><span>${product.price}</span> ₽</div>
-				<button class="products__item-btn" data-id="${product.id}">
-					<svg class="products__item-btn-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-						<path d="M10 4.16663V15.8333" stroke="#1F2020" stroke-width="2" stroke-linecap="round"
-							stroke-linejoin="round" />
-						<path d="M4.16699 10H15.8337" stroke="#1F2020" stroke-width="2" stroke-linecap="round"
-							stroke-linejoin="round" />
-					</svg>
-				</button>
-			</div>
-		</div>
+    <div class="products__item" data-id="${product.id}">
+      <div class="products__item-img-wrapper"><img src="${product.image}" alt="${product.title}" class="products__item-img"></div>
+      <h2 class="products__item-title">${product.title}</h2>
+      <div class="products__item-bottom">
+        <div class="products__item-price"><span>${product.price}</span> ₽</div>
+        <button class="products__item-btn" data-id="${product.id}">
+          <svg class="products__item-btn-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10 4.16663V15.8333" stroke="#1F2020" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M4.16699 10H15.8337" stroke="#1F2020" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
   `;
 }
 
@@ -64,7 +64,6 @@ async function renderProducts() {
 	const activeSortOption = document.querySelector('.products__top-sort-option.active');
 	const sortType = activeSortOption ? activeSortOption.dataset.sort : 'price-desc';
 
-	// Обновляем текст текущей сортировки
 	updateCurrentSortText(activeSortOption);
 
 	filteredProducts = sortProducts(filteredProducts, sortType);
@@ -131,8 +130,6 @@ productsFilterBtns.forEach((item) => {
 	});
 });
 
-document.addEventListener('DOMContentLoaded', renderProducts);
-
 const cartBtn = document.querySelector('.header__control-cart');
 const cartPopup = document.querySelector('.cart');
 const cartPopupCloseBtn = document.querySelector('.cart__btn-close');
@@ -151,67 +148,207 @@ cartPopupCloseBtn.addEventListener('click', () => {
 
 const cartStore = [];
 
+function getProductData(item) {
+	return {
+		id: item.dataset.id,
+		title: item.querySelector('.products__item-title').textContent,
+		price: parseInt(item.querySelector('.products__item-price span').textContent),
+		image: item.querySelector('.products__item-img').src,
+	};
+}
+
+function addToCart(product) {
+	const existingItem = cartStore.find((item) => item.id === product.id);
+
+	if (existingItem) {
+		existingItem.quantity += 1;
+	} else {
+		cartStore.push({
+			...product,
+			quantity: 1,
+		});
+	}
+
+	renderCartProducts();
+	updateCartCounter();
+}
+
 function initCartHandlers() {
 	const products = document.querySelectorAll('.products__item');
 
 	products.forEach((item) => {
-		item.querySelector('.products__item-btn').addEventListener('click', () => {
-			console.log(item, 'item');
-			console.log(cartStore, 'cartStore');
+		const btn = item.querySelector('.products__item-btn');
+		const productId = btn.dataset.id;
 
-			cartStore.push(item);
-			renderCartProducts();
+		btn.addEventListener('click', () => {
+			const product = getProductData(item);
+			addToCart(product);
 		});
 	});
 }
 
 function renderCartProducts() {
 	const cartProductsBox = document.querySelector('.cart__main-box');
+	const cartTotalPrice = document.querySelector('.cart__bottom-price');
+	const cartItemsCount = document.querySelector('.cart__main-top-count');
+	const clearCartBtn = document.querySelector('.cart__main-top-btn-reset');
 
-	cartProductsBox.innerHTML = cartStore.map((item) => {
-		return `
-		<div class="cart__main-box-row">
-			<div class="cart__main-box-col">
-				<img src="${item.image}" alt="${item.title}" class="cart__main-box-img">
-			</div>
-			<div class="cart__main-box-col">
-				<h2 class="cart__main-box-title">${item.title}</h2>
-				<div class="cart__main-box-price">${item.price} ₽</div>
-			</div>
-			<div class="cart__main-box-col">
-				<div class="cart__main-box-controls">
-					<button class="cart__main-box-controls-btn cart__main-box-controls-btn_minus">
-						<svg xmlns="http://www.w3.org/2000/svg" width="12" height="2" viewBox="0 0 12 2" fill="none">
-							<path d="M1.3335 1H10.6668" stroke="black" stroke-width="1.4" stroke-linecap="round"
-								stroke-linejoin="round" />
-						</svg>
-					</button>
-					<span class="cart__main-box-controls-count">2</span>
-					<button class="cart__main-box-controls-btn cart__main-box-controls-btn_plus">
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-							<path d="M8 3.33325V12.6666" stroke="black" stroke-width="1.4" stroke-linecap="round"
-								stroke-linejoin="round" />
-							<path d="M3.3335 8H12.6668" stroke="black" stroke-width="1.4" stroke-linecap="round"
-								stroke-linejoin="round" />
-						</svg>
-					</button>
-				</div>
-			</div>
-			<div class="cart__main-box-col">
-				<button class="cart__main-box-btn-close">
-					<svg class="cart__main-box-btn-close-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-						viewBox="0 0 24 24" fill="none">
-						<path d="M18 6L6 18" stroke="#1F2020" stroke-width="1.4" stroke-linecap="round"
-							stroke-linejoin="round" />
-						<path d="M6 6L18 18" stroke="#1F2020" stroke-width="1.4" stroke-linecap="round"
-							stroke-linejoin="round" />
-					</svg>
-				</button>
-			</div>
-		</div>
-	`;
+	if (cartStore.length === 0) {
+		cartProductsBox.innerHTML = '<div class="cart__empty">Корзина пуста</div>';
+		cartTotalPrice.textContent = '0 ₽';
+		cartItemsCount.textContent = '0 товаров';
+		return;
+	}
+
+	cartProductsBox.innerHTML = cartStore
+		.map((item, index) => {
+			return `
+    <div class="cart__main-box-row" data-id="${item.id}">
+      <div class="cart__main-box-col">
+        <img src="${item.image}" alt="${item.title}" class="cart__main-box-img">
+      </div>
+      <div class="cart__main-box-col">
+        <h2 class="cart__main-box-title">${item.title}</h2>
+        <div class="cart__main-box-price">${item.price} ₽</div>
+      </div>
+      <div class="cart__main-box-col">
+        <div class="cart__main-box-controls">
+          <button class="cart__main-box-controls-btn cart__main-box-controls-btn_minus" data-id="${item.id}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="2" viewBox="0 0 12 2" fill="none">
+              <path d="M1.3335 1H10.6668" stroke="black" stroke-width="1.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+          <span class="cart__main-box-controls-count">${item.quantity}</span>
+          <button class="cart__main-box-controls-btn cart__main-box-controls-btn_plus" data-id="${item.id}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M8 3.33325V12.6666" stroke="black" stroke-width="1.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M3.3335 8H12.6668" stroke="black" stroke-width="1.4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="cart__main-box-col">
+        <button class="cart__main-box-btn-close" data-id="${item.id}">
+          <svg class="cart__main-box-btn-close-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            viewBox="0 0 24 24" fill="none">
+            <path d="M18 6L6 18" stroke="#1F2020" stroke-width="1.4" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M6 6L18 18" stroke="#1F2020" stroke-width="1.4" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    `;
+		})
+		.join('');
+
+	const total = cartStore.reduce((sum, item) => sum + item.price * item.quantity, 0);
+	cartTotalPrice.textContent = `${total.toLocaleString()} ₽`;
+
+	const totalItems = cartStore.reduce((count, item) => count + item.quantity, 0);
+	cartItemsCount.textContent = `${totalItems} ${getNoun(totalItems, 'товар', 'товара', 'товаров')}`;
+
+	initCartItemHandlers();
+	clearCartBtn.addEventListener('click', clearCart);
+}
+
+function initCartItemHandlers() {
+	document.querySelectorAll('.cart__main-box-controls-btn_plus').forEach((btn) => {
+		btn.addEventListener('click', (e) => {
+			const productId = e.currentTarget.dataset.id;
+			changeQuantity(productId, 1);
+		});
+	});
+
+	document.querySelectorAll('.cart__main-box-controls-btn_minus').forEach((btn) => {
+		btn.addEventListener('click', (e) => {
+			const productId = e.currentTarget.dataset.id;
+			changeQuantity(productId, -1);
+		});
+	});
+
+	document.querySelectorAll('.cart__main-box-btn-close').forEach((btn) => {
+		btn.addEventListener('click', (e) => {
+			const productId = e.currentTarget.dataset.id;
+			removeFromCart(productId);
+		});
 	});
 }
+
+function changeQuantity(productId, change) {
+	const itemIndex = cartStore.findIndex((item) => item.id === productId);
+
+	if (itemIndex !== -1) {
+		cartStore[itemIndex].quantity += change;
+
+		if (cartStore[itemIndex].quantity <= 0) {
+			cartStore.splice(itemIndex, 1);
+		}
+
+		renderCartProducts();
+		updateCartCounter();
+	}
+}
+
+function removeFromCart(productId) {
+	const itemIndex = cartStore.findIndex((item) => item.id === productId);
+
+	if (itemIndex !== -1) {
+		cartStore.splice(itemIndex, 1);
+		renderCartProducts();
+		updateCartCounter();
+	}
+}
+
+function clearCart() {
+	cartStore.length = 0;
+	renderCartProducts();
+	updateCartCounter();
+}
+
+function updateCartCounter() {
+	const cartCounter = document.querySelector('.header__control-cart');
+	const totalItems = cartStore.reduce((count, item) => count + item.quantity, 0);
+
+	if (totalItems > 0) {
+		cartCounter.textContent = totalItems;
+		cartCounter.style.display = 'flex';
+	} else {
+		cartCounter.style.display = 'none';
+	}
+}
+
+function getNoun(number, one, two, five) {
+	let n = Math.abs(number);
+	n %= 100;
+	if (n >= 5 && n <= 20) {
+		return five;
+	}
+	n %= 10;
+	if (n === 1) {
+		return one;
+	}
+	if (n >= 2 && n <= 4) {
+		return two;
+	}
+	return five;
+}
+
+document.querySelector('.cart__bottom-btn-order').addEventListener('click', () => {
+	if (cartStore.length > 0) {
+		alert('Заказ оформлен!');
+		clearCart();
+		cartPopup.classList.remove('active');
+		document.body.style.overflow = '';
+		overlay.classList.remove('active');
+	} else {
+		alert('Корзина пуста!');
+	}
+});
 
 const overlay = document.querySelector('.overlay');
 const productsTopSortCurrent = document.querySelector('.products__top-sort-current');
