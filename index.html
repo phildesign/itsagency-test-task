@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <title>itsagency-test-task</title>
+  <link rel="stylesheet" crossorigin href="./assets/index.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="header__inner container">
+      <button class="header__nav-mobile-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <svg class="header__logo" xmlns="http://www.w3.org/2000/svg" width="131" height="26" viewBox="0 0 131 26"
+        fill="none">
+        <path
+          d="M17.5496 16.8C16.8296 19.05 14.8496 21.3 11.3996 21.3C7.46961 21.3 4.49961 18.3 4.49961 13.5C4.49961 8.69995 7.46961 5.69995 11.3996 5.69995C14.0696 5.69995 16.4996 7.19995 17.5496 10.05H20.8496C19.9796 6.29995 16.6496 2.69995 11.3996 2.69995C5.87961 2.69995 1.34961 7.04995 1.34961 13.5C1.34961 19.95 5.87961 24.3 11.3996 24.3C17.0696 24.3 20.1296 20.1 20.8496 16.8L17.5496 16.8Z"
+          fill="#1F2020" />
+        <path
+          d="M33.3137 24.3C38.8337 24.3 43.3637 19.95 43.3637 13.5C43.3637 7.04995 38.8337 2.69995 33.3137 2.69995C27.7937 2.69995 23.2637 7.04995 23.2637 13.5C23.2637 19.95 27.7937 24.3 33.3137 24.3ZM33.3137 5.69995C37.2437 5.69995 40.2137 8.69995 40.2137 13.5C40.2137 18.3 37.2437 21.3 33.3137 21.3C29.3837 21.3 26.4137 18.3 26.4137 13.5C26.4137 8.69995 29.3837 5.69995 33.3137 5.69995Z"
+          fill="#1F2020" />
+        <path d="M46.9566 24L60.3066 24V21L50.1066 21V2.99995L46.9566 2.99995V24Z" fill="#1F2020" />
+        <path
+          d="M71.1066 24.3C76.6266 24.3 81.1566 19.95 81.1566 13.5C81.1566 7.04995 76.6266 2.69995 71.1066 2.69995C65.5866 2.69995 61.0566 7.04995 61.0566 13.5C61.0566 19.95 65.5866 24.3 71.1066 24.3ZM71.1066 5.69995C75.0366 5.69995 78.0066 8.69995 78.0066 13.5C78.0066 18.3 75.0366 21.3 71.1066 21.3C67.1766 21.3 64.2066 18.3 64.2066 13.5C64.2066 8.69995 67.1766 5.69995 71.1066 5.69995Z"
+          fill="#1F2020" />
+        <path
+          d="M84.7496 24H87.8996V16.5H89.3996L96.8996 24L100.95 24L93.4496 16.5H94.1996C97.6496 16.5 100.35 13.83 100.35 9.74995C100.35 5.66995 97.6496 2.99995 94.1996 2.99995L84.7496 2.99995V24ZM87.8996 13.5V5.99995L94.0496 5.99995C95.7296 5.99995 97.1996 7.49995 97.1996 9.74995C97.1996 12 95.7296 13.5 94.0496 13.5H87.8996Z"
+          fill="#1F2020" />
+        <path
+          d="M103.211 17.55C103.211 21.3 106.211 24.3 111.461 24.3C116.711 24.3 119.411 21.6 119.411 18.15C119.411 14.82 117.491 13.05 113.261 12.3L109.961 11.7C107.681 11.25 106.811 10.2 106.811 8.84995C106.811 7.16995 108.311 5.69995 111.161 5.69995C114.161 5.69995 115.961 7.49995 115.961 9.44995H119.111C119.111 5.69995 116.411 2.69995 111.161 2.69995C106.511 2.69995 103.661 5.39995 103.661 8.84995C103.661 11.73 105.281 13.8 108.611 14.4L112.661 15.15C115.061 15.6 116.261 16.62 116.261 18.15C116.261 19.95 114.911 21.3 111.461 21.3C108.341 21.3 106.361 19.5 106.361 17.55L103.211 17.55Z"
+          fill="#1F2020" />
+        <circle cx="127" cy="6" r="4" fill="#1F2020" />
+      </svg>
+  
+      <nav class="header__nav">
+        <a href="/" class="header__nav-link">Продукты</a>
+        <a href="/" class="header__nav-link">Цвета</a>
+        <a href="/" class="header__nav-link">Вдохновение</a>
+        <a href="/" class="header__nav-link">Советы</a>
+        <a href="/" class="header__nav-link">Найти магазин</a>
+      </nav>
+  
+      <div class="header__contacts">
+        <a href="tel:+74952217769" class="header__contacts-phone">+7 (495) 221-77-69</a>
+        <span class="header__contacts-text">Заказать звонок</span>
+      </div>
+  
+      <div class="header__control">
+        <button class="header__control-search">
+          <svg class="header__control-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+            fill="none">
+            <path
+              d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z"
+              stroke="#1F2020" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M17.5 17.5L13.875 13.875" stroke="#1F2020" stroke-width="1.4" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+        <a href="/" class="header__control-account">
+          <svg class="header__control-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
+            fill="none">
+            <g clip-path="url(#clip0_8_30)">
+              <circle cx="11" cy="23" r="8.4" stroke="black" stroke-width="1.2" />
+              <circle cx="11" cy="7" r="3.4" stroke="black" stroke-width="1.2" />
+            </g>
+            <defs>
+              <clipPath id="clip0_8_30">
+                <rect width="22" height="22" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </a>
+        <button class="header__control-favorites">
+          <svg class="header__control-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
+            fill="none">
+            <path
+              d="M11.0009 19C10.745 19.0001 10.4978 18.9074 10.3052 18.739C9.57966 18.1047 8.87674 17.5067 8.25817 16.9802C6.65691 15.7048 5.16127 14.3023 3.78581 12.7865C2.67695 11.5918 2.0423 10.0341 2.00085 8.4053C1.97621 6.99164 2.48598 5.62067 3.42845 4.56595C3.88583 4.0681 4.44256 3.67154 5.06275 3.40184C5.68294 3.13214 6.35283 2.9953 7.0292 3.00012C8.05552 2.99541 9.053 3.3392 9.8581 3.97514C10.2942 4.31625 10.6791 4.71815 11.0009 5.16854C11.3231 4.71841 11.7082 4.31682 12.1446 3.97605C12.9489 3.34036 13.9453 2.99628 14.9708 3.00012C15.6472 2.9953 16.3171 3.13214 16.9372 3.40184C17.5574 3.67154 18.1142 4.0681 18.5715 4.56595C19.514 5.62067 20.0238 6.99164 19.9991 8.4053C19.9585 10.0337 19.3249 11.5915 18.2169 12.7865C16.8425 14.3013 15.3481 15.7028 13.7482 16.9775C13.1287 17.5049 12.4267 18.1029 11.6975 18.7399C11.5045 18.9081 11.257 19.0005 11.0009 19V19Z"
+              stroke="black" stroke-width="1.2" />
+          </svg>
+        </button>
+        <button class="header__control-cart">
+          0
+        </button>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="breadcrumb">
+      <ul class="breadcrumb__list">
+        <li class="breadcrumb__list-item">
+          <a href="#" class="breadcrumb__list-item-link">Главная</a>
+        </li>
+        <li class="breadcrumb__list-item">
+          <a href="#" class="breadcrumb__list-item-link">Продукты</a>
+        </li>
+        <li class="breadcrumb__list-item">
+          <a href="#" class="breadcrumb__list-item-link">Краски</a>
+        </li>
+      </ul>
+    </div>    <div class="main-slider swiper">
+      <div class="swiper-wrapper">
+        <div class="main-slider__slide swiper-slide">
+          <div class="main-slider__slide-info">
+            <h2 class="main-slider__slide-title">Краски</h2>
+            <p class="main-slider__slide-text">Идеально подходят для стен и других поверхностей. Найди свой идеальный
+              цвет!</p>
+          </div>
+          <img class="main-slider__slide-img" src="./img/main-slider.jpg" alt="main-slider">
+        </div>
+        <div class="main-slider__slide swiper-slide">
+          <div class="main-slider__slide-info">
+            <h2 class="main-slider__slide-title">Краски 2</h2>
+            <p class="main-slider__slide-text">Идеально подходят для стен и других поверхностей. Найди свой идеальный
+              цвет!</p>
+          </div>
+          <img class="main-slider__slide-img" src="./img/main-slider.jpg" alt="main-slider">
+        </div>
+        <div class="main-slider__slide swiper-slide">
+          <div class="main-slider__slide-info">
+            <h2 class="main-slider__slide-title">Краски 3</h2>
+            <p class="main-slider__slide-text">Идеально подходят для стен и других поверхностей. Найди свой идеальный
+              цвет!</p>
+          </div>
+          <img class="main-slider__slide-img" src="./img/main-slider.jpg" alt="main-slider">
+        </div>
+      </div>
+    
+      <div class="main-slider__controls">
+        <div class="main-slider__btn-prev swiper-button-prev"></div>
+        <div class="main-slider__btn-next swiper-button-next"></div>
+      </div>
+    
+      <div class="main-slider__pagination swiper-pagination"></div>
+    </div>
+    <h1 class="title">Краски</h1>
+
+    <div class="content container">
+      <aside class="filter">
+        <div class="filter__item filter__item_new">
+          <label class="toggle">
+            <input type="checkbox">
+            <span class="toggle__slider"></span>
+          </label>
+          Новинки
+        </div>
+        <div class="filter__item filter__item_available">
+          <label class="toggle">
+            <input type="checkbox" checked>
+            <span class="toggle__slider"></span>
+          </label>
+          Есть в наличии
+        </div>
+        <div class="filter__item filter__item_contractual">
+          <label class="toggle">
+            <input type="checkbox">
+            <span class="toggle__slider"></span>
+          </label>
+          Контрактные
+        </div>
+        <div class="filter__item filter__item_exclusive">
+          <label class="toggle">
+            <input type="checkbox">
+            <span class="toggle__slider"></span>
+          </label>
+          Эксклюзивные
+        </div>
+        <div class="filter__item filter__item_sale">
+          <label class="toggle">
+            <input type="checkbox">
+            <span class="toggle__slider"></span>
+          </label>
+          Распродажа
+        </div>
+      </aside>      <div class="products">
+        <div class="products__top">
+          <button class="products__top-filters-btn">Фильтры</button>
+          <div class="products__top-count"><span></span> товаров</div>
+          <div class="products__top-sort">
+            <div class="products__top-sort-current"><span>Сначала дорогие</span>
+              <svg class="products__top-sort-icon" xmlns="http://www.w3.org/2000/svg" width="8" height="5" viewBox="0 0 8 5"
+                fill="none">
+                <path d="M4 4.5L7.4641 0L0.535898 0L4 4.5Z" fill="#202020" />
+              </svg>
+            </div>
+      
+            <div class="products__top-sort-popup">
+              <div class="products__top-sort-option active" data-sort="price-desc">Сначала дорогие</div>
+              <div class="products__top-sort-option" data-sort="price-asc">Сначала дешевые</div>
+              <div class="products__top-sort-option" data-sort="popular">По популярности</div>
+              <div class="products__top-sort-option" data-sort="new">Сначала новые</div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="products__box"></div>
+      </div>    </div>
+  </main>
+
+  <footer class="footer"></footer>
+  <div class="cart">
+    <div class="cart__inner">
+      <div class="cart__top">
+        <h2 class="cart__top-title">Корзина</h2>
+        <button class="cart__btn-close">
+          <svg class="cart__btn-close-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+            fill="none">
+            <path d="M18 6L6 18" stroke="#1F2020" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M6 6L18 18" stroke="#1F2020" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+      <div class="cart__main">
+        <div class="cart__main-top">
+          <div class="cart__main-top-count">0 товаров</div>
+          <button class="cart__main-top-btn-reset">очистить список</button>
+        </div>
+        <div class="cart__main-box"></div>
+      </div>
+      <div class="cart__bottom">
+        <div class="cart__bottom-left">
+          <div class="cart__bottom-text">Итого</div>
+          <div class="cart__bottom-price">14 400 ₽</div>
+        </div>
+        <div class="cart__bottom-right">
+          <button class="cart__bottom-btn-order">Оформить заказ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="./src/scripts.js"></script>
+
+</body>
+
+</html>
