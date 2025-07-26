@@ -30,3 +30,16 @@
 - соответствие макету
 - использовать компонентный подход
 - минимальная кроссбраузерность (последние версии Chrome, Safari и Firefox)
+
+---
+
+[<img src="./project.jpg">]()
+
+### Stack:
+
+- JS
+- HTML
+- SCSS
+- Vite
+
+Ссылка на GitHub Pages - https://phildesign.github.io/itsagency-test-task/
