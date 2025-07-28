@@ -90,7 +90,8 @@
 
 .cart__main-box {
 	overflow-y: auto;
-	height: 250px;
+	height: 500px;
+	margin-bottom: 50px;
 
 	@media (max-width: 500px) {
 		height: auto;
